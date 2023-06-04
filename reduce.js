@@ -14,7 +14,7 @@ console.log(
   "Total:", acc + curr
 );
 return acc + curr;
-}, 10);
+}, 0);
 
 const teamMembers = [
   {
@@ -36,10 +36,37 @@ const teamMembers = [
     name: 'Kelly',
     profession: 'Designer',
     yrsExperience: 3
-  }
+  },
+  {
+    name: 'Mark',
+    profession: 'Manager',
+    yrsExperience: 10
+  } 
 ];
 
 // Totaling a specific object property
 
+// use the reduce method to find the total years of exp for the team
+// similar process to summing the array of numbers
+
+const totalExperience = teamMembers.reduce((acc, curr) => acc + curr.yrsExperience, 0);
+console.log(totalExperience);
 
 // Grouping by a property, and totaling it too
+
+// group team members by profession
+// and find the total experience for each profession
+
+// this is the result we want - {Developer: 12, Designer: 4}
+
+let experienceByProfession = teamMembers.reduce((acc, curr) => {
+  let key = curr.profession;
+  if (!acc[key]) {
+    acc[key] = curr.yrsExperience;
+  } else {
+    acc[key] += curr.yrsExperience;
+  }
+  return acc;
+}, {});
+
+console.log(experienceByProfession);
